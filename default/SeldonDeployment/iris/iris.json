@@ -17,42 +17,6 @@
                 "graph": {
                     "name": "iris-container",
                     "implementation": "SKLEARN_SERVER",
-                    "modelUri": "gs://seldon-models/sklearn/iris",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2021-10-14T10:30:39Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "iris-container",
-                                    "resources": {}
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "project.seldon.io/iris-container": "default"
-                },
-                "engineResources": {},
-                "labels": {
-                    "version": "default"
-                },
-                "svcOrchSpec": {},
-                "traffic": 90
-            },
-            {
-                "name": "canary",
-                "graph": {
-                    "name": "iris-container",
-                    "implementation": "SKLEARN_SERVER",
                     "modelUri": "gs://seldon-models/v1.11.2/sklearn/iris",
                     "logger": {
                         "mode": "all"
@@ -75,12 +39,14 @@
                 ],
                 "replicas": 1,
                 "annotations": {
-                    "project.seldon.io/iris-container": "default",
-                    "seldon.io/canary": "true"
+                    "project.seldon.io/iris-container": "default"
                 },
                 "engineResources": {},
+                "labels": {
+                    "version": "default"
+                },
                 "svcOrchSpec": {},
-                "traffic": 10
+                "traffic": 100
             }
         ],
         "annotations": {
