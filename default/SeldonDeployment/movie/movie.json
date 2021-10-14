@@ -6,6 +6,7 @@
         "namespace": "default",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "rafal-sd-14-upgrade-test-default",
             "fluentd": "true"
         }
     },
@@ -14,46 +15,6 @@
         "predictors": [
             {
                 "name": "default",
-                "graph": {
-                    "name": "movie-container",
-                    "implementation": "SKLEARN_SERVER",
-                    "modelUri": "gs://seldon-models/sklearn/moviesentiment",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2021-10-14T15:03:50Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "movie-container",
-                                    "resources": {}
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "project.seldon.io/movie-container": "default"
-                },
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 90,
-                "explainer": {
-                    "type": "AnchorText",
-                    "containerSpec": {
-                        "name": "",
-                        "resources": {}
-                    }
-                }
-            },
-            {
-                "name": "canary",
                 "graph": {
                     "name": "movie-container",
                     "implementation": "SKLEARN_SERVER",
@@ -79,12 +40,14 @@
                 ],
                 "replicas": 1,
                 "annotations": {
-                    "project.seldon.io/movie-container": "default",
-                    "seldon.io/canary": "true"
+                    "project.seldon.io/movie-container": "default"
                 },
                 "engineResources": {},
+                "labels": {
+                    "version": "default"
+                },
                 "svcOrchSpec": {},
-                "traffic": 10
+                "traffic": 100
             }
         ],
         "annotations": {
